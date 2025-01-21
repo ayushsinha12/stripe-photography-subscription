@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import tailwindTypography from "@tailwindcss/typography";
+import daisyui from "daisyui";
 
 export default {
   content: [
@@ -14,5 +16,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    tailwindTypography, // Adds typography plugin
+    daisyui, // Adds DaisyUI plugin
+  ],
 } satisfies Config;
