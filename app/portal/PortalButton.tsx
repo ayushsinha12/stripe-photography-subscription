@@ -3,8 +3,10 @@
 import { createPortalSession } from './portalAction';
 import { supabase } from '@/utils/supabaseClient';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 export default function PortalButton() {
+  const router = useRouter();
   const handleClick = async () => {
     try {
       const { data: { user } } = await supabase.auth.getUser();
@@ -22,6 +24,8 @@ export default function PortalButton() {
       const { url } = await createPortalSession(customer?.stripe_customer_id);
 
       window.location.href = url;
+
+      //router.push('/billing-return');
 
     } catch (error) {
       console.error(error);
