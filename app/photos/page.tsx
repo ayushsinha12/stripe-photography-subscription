@@ -1,6 +1,11 @@
 import DownloadButton from "./DownloadButton";
 
+/**
+ * PhotosPage component
+ * Displays a gallery of images with a corresponding download button for each.
+ */
 export default function PhotosPage() {
+  //Array of image paths to be displayed on the page
     const images = [
         '/images/IMG_1032.jpg',
         '/images/IMG_2141.jpg',

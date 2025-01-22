@@ -4,8 +4,13 @@ import { loadStripe } from '@stripe/stripe-js';
 import { supabase } from '@/utils/supabaseClient';
 import toast from 'react-hot-toast';
 
-
+/**
+ * Renders a button that initiates a Stripe Checkout session.
+ */
 export default function CheckoutButton() {
+  /**
+   * Handles the creation of a Stripe Checkout session for the user.
+   */
   const handleCheckout = async() => {
     const { data } = await supabase.auth.getUser();
 
@@ -14,8 +19,11 @@ export default function CheckoutButton() {
       return;
     }
 
+    // Load Stripe.js with the publishable key
     const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
     const stripe = await stripePromise;
+
+    // Create a new checkout session through the API
     const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: {

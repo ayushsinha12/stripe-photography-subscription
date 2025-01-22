@@ -1,14 +1,6 @@
 import CheckoutButton from "./CheckoutButton";
-//import UserProfile from "./user/UserProfile";
 
-/*export default function Login() {
-  return (
-    <>
-      <UserProfile />
-    </>
-  );
-}*/
-
+// Main Home component rendering the CheckoutButton
 export default function Home() {
   return (
     <main>

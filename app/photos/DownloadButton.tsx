@@ -3,11 +3,20 @@
 import { supabase } from "@/utils/supabaseClient";
 import toast from "react-hot-toast";
 
+/**
+ * DownloadButton component
+ * Handles downloading an image and tracks usage with Supabase and API integration.
+ * 
+ * @param {string} image - The image identifier to be downloaded.
+ */
 export default async function DownloadButton({ image }: { image: string }) {
   const handleDownload = async () => {
+
+    // Retrieve the current session to get the access token
     const session = await supabase.auth.getSession();
     const token = session.data.session?.access_token;
 
+    // Make a POST request to the usage-meter API to track the download
     const res = await fetch("/api/usage-meter", {
       method: "POST",
       headers: {
@@ -17,6 +26,7 @@ export default async function DownloadButton({ image }: { image: string }) {
       body: JSON.stringify({ image }),
     });
 
+    // Check if the response is successful
     if (res.ok) {
       const { total_downloads } = await res.json();
       toast.success(`Success! You have downloaded ${total_downloads} images`);
@@ -27,6 +37,7 @@ export default async function DownloadButton({ image }: { image: string }) {
   };
 
   return (
+    // Button for triggering the handleDownload function
     <>
       <button
         onClick={handleDownload}

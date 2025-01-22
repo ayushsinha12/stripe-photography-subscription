@@ -6,10 +6,13 @@ import { User } from "@supabase/supabase-js";
 import LoginForm from "./LoginForm";
 import PortalButton from "../portal/PortalButton";
 
+// Component: UserProfile
+// Handles user authentication, Stripe customer data fetching, and user logout
 export default function UserProfile() {
   const [user, setUser] = useState<User | null>(null);
   const [stripeCustomer, setStripeCustomer] = useState<any>(null);
 
+  // Effect: Fetches the authenticated user and their Stripe customer data
   useEffect(() => {
     const fetchUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
@@ -17,6 +20,7 @@ export default function UserProfile() {
       setUser(user);
 
       if (user) {
+        // Fetch Stripe customer data for the logged-in user
         const { data: stripeCustomerData, error } = await supabase
           .from("stripe_customers")
           .select("*")
@@ -33,6 +37,7 @@ export default function UserProfile() {
 
     fetchUser();
 
+    // Listen for authentication state changes
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (event === "SIGNED_IN") {
@@ -51,6 +56,8 @@ export default function UserProfile() {
     };
   }, []);
 
+  // Function: handleLogout
+  // Logs out the current user from Supabase
   const handleLogout = async () => {
     await supabase.auth.signOut();
   };
@@ -85,7 +92,7 @@ export default function UserProfile() {
           ) : (
             <div>
               <p className="text-yellow-500">
-                Stripe customer data not created yet. Buy a plan!
+                Stripe customer data not created yet. Buy a plan at the bottom of the home page!
               </p>
             </div>
           )}

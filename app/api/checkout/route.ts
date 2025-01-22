@@ -1,9 +1,13 @@
 import { NextResponse } from 'next/server';
 import { stripe } from '@/utils/stripe';
 
+/**
+ * Handles POST requests to create a Stripe Checkout session.
+ * Configures session details for a subscription and one-time setup fee.
+ */
 export async function POST(request: Request) {
     try {
-        const { priceId, email, userId } = await request.json();
+        const { priceId, email, userId } = await request.json(); // Extract request data
 
         const session = await stripe.checkout.sessions.create({
             metadata: {

@@ -5,7 +5,6 @@ import { randomBytes } from 'crypto';
 
 export async function POST(request: Request) {
     try {
-
         // Check if the user is logged in
         const token = request.headers.get('Authorization')?.split('Bearer ')[1];
         if (!token) {
@@ -35,13 +34,17 @@ export async function POST(request: Request) {
             .from('downloads')
             .insert({ user_id: user.id, image });
 
+        // Increment the user's total downloads in the 'stripe_customers' table
         await supabaseAdmin
             .from('stripe_customers')
             .update({ total_downloads: customer.total_downloads + 1})
             .eq('user_id', user.id)
 
+        // Retrieve the subscription details from Stripe
         const subscription = await stripe.subscriptions.retrieve(customer.subscription_id);
         const subscriptionItem = subscription.items.data[0];
+
+        // Create a usage record in Stripe
         const usageRecord = await stripe.subscriptionItems.createUsageRecord(
             subscriptionItem.id,
             {

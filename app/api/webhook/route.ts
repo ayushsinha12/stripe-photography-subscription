@@ -10,6 +10,7 @@ export async function POST(request: NextRequest) {
   
       let event;
       try {
+        // Construct the Stripe event using the raw body and signature
         event = stripe.webhooks.constructEvent(rawBody, signature!, process.env.STRIPE_WEBHOOK_SECRET!);
         console.log('Constructed Event:', event);
       } catch (error: any) {
@@ -37,12 +38,13 @@ export async function POST(request: NextRequest) {
             plan_expires: null 
         });
         if (error) {
-          console.error('Error Updating Supabase:', error.message); // Add this line
+          console.error('Error Updating Supabase:', error.message);
         } else {
-          console.log('Supabase Updated Successfully for User ID:', userId); // Add this line
+          console.log('Supabase Updated Successfully for User ID:', userId);
         }
       }
-  
+
+      // Handle the customer.subscription.updated event
       if (event.type === 'customer.subscription.updated') {
         console.log('Received customer.subscription.updated Event:', event);
         const subscription: Stripe.Subscription = event.data.object;
@@ -53,7 +55,8 @@ export async function POST(request: NextRequest) {
             .update({ plan_expires: subscription.cancel_at })
             .eq('subscription_id', subscription.id);
       }
-  
+
+      // Handle the customer.subscription.deleted event
       if (event.type === 'customer.subscription.deleted') {
         console.log('Received customer.subscription.deleted Event:', event);
         const subscription = event.data.object;

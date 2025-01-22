@@ -6,6 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useCallback, useRef, useState } from "react";
 
+// Main component for handling embedded checkout functionality
 export default function EmbeddedCheckoutButton() {
   const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
@@ -13,6 +14,7 @@ export default function EmbeddedCheckoutButton() {
   const [showCheckout, setShowCheckout] = useState(false);
   const modalRef = useRef<HTMLDialogElement>(null);
 
+  // Fetch client secret for embedded checkout session
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
     return fetch("/api/embedded-checkout", {
