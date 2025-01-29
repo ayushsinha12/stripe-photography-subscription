@@ -4,6 +4,8 @@ This subscription-based photography SaaS platform is built with Next.js, React, 
 
 ### Note
 Stripe offers test cards that are compatable with this project that you can use if you do not want to enter your actual info. Here is the information of a test card:
-	Visa: 4242 4242 4242 4242
+<p align="center">
+  Visa: 4242 4242 4242 4242
   CVC: Any 3 digits
-	Expiration Date: Any future date
+  Expiration Date: Any future date
+</p>
