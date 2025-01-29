@@ -1,4 +1,4 @@
-# Subscription-Based Photography SAAS Platform📷 | https://stripe-photography-subscription.vercel.app/
+# Subscription-Based Photography SAAS Platform 📷 | https://stripe-photography-subscription.vercel.app/
 ## Description
 This subscription-based photography SaaS platform is built with Next.js, React, Stripe, and Supabase to manage user authentication, subscriptions, and payments. Users must purchase a subscription plan to access a curated library of images, all captured from scenes I experienced during my study abroad in Greece, Italy, the Netherlands, Hungary, Austria, and more. Stripe Checkout and Payment Intents handle secure transactions, allowing users to subscribe, manage, and cancel their plans anytime. Supabase stores user data and subscription statuses, while Next.js API routes process Stripe webhooks to update subscriptions in real-time. The platform is deployed on Vercel, utilizing serverless functions for seamless payment processing and account management.
 
