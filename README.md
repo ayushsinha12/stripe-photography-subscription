@@ -13,3 +13,5 @@ Stripe offers test cards that are compatable with this project that you can use 
 <p align="center">
    Expiration Date: Any future date
 </p>
+
+## Pictures
