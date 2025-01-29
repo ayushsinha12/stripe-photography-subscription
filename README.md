@@ -15,3 +15,27 @@ Stripe offers test cards that are compatable with this project that you can use 
 </p>
 
 ## Pictures
+<div align="center">
+  <img src="homePage.png" width="666" height="383">
+</div>
+<p align="center">
+  Above is an example home page.
+</p>
+<div align="center">
+  <img src="photosPage.png" width="666" height="383">
+</div>
+<p align="center">
+  Above is an example photos page.
+</p>
+<div align="center">
+  <img src="paymentPage.png" width="666" height="383">
+</div>
+<p align="center">
+  Above is an example payment page for the subscription.
+</p>
+<div align="center">
+  <img src="userAuthPage.png" width="666" height="383">
+</div>
+<p align="center">
+  Above is an example user information page.
+</p>
